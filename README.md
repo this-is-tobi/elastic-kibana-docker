@@ -39,17 +39,19 @@ Chose your dataset and save it in "/elastic-kibana-docker/data":
 
 Note: You can use another data source but be careful of the JSON format of your file (adding data using bulk need one object by line preceded by header).    
 
--> Add header for each object in the JSON array (needed to send data to Elasticsearch with bulk method)
+-> Add header for each object in the JSON array (needed to send data to Elasticsearch with bulk method)    
 Open terminal, go to "/elastic-kibana-docker/data" and run:
 
     cat inputFileName.json | jq -c ' .[] | {"index": {"_index": "examples", "_type": "example"}}, . ' > outputFileName.json
 
 Note: Change the inputFileName.json for the name of your input file and chose the output file name. Change "_index" name for what you are working with and do it again for "_type"
 
+
 -> Start Elasticsearch and Kibana containers    
 open terminal, go to "/elastic-kibana-docker" and run:
   
     docker-compose up
+
 
 -> Add data to the Elasticsearch cluster:    
 open terminal and run: 
