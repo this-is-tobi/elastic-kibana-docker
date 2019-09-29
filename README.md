@@ -7,7 +7,9 @@ Use [docker-compose](https://docs.docker.com/compose/) to start docker container
  - kibana
 
 Note:  
-* Containers are already set-up to communicate together  
+* Containers are already set-up to communicate together   
+* This project contains a data sample (movies_elastic.json) that is up to use    
+* Do not upload data file that is more dans 100mb (this case need more configuration in the docker-compose file)    
 * Every edit in the local data folder will automatically be reflected in the elasticsearch container (data folder)   
 * Security isn't setup in containers (don't use this docker-compose for production)   
             
@@ -35,6 +37,8 @@ Chose your dataset and save it in "/elastic-kibana-docker/data":
 
     https://opendata.paris.fr/explore/?sort=modified
 
+Note: You can use another data source but be careful of the JSON format of your file (adding data using bulk need one object by line preceded by header).    
+
 -> Add header for each object in the JSON array (needed to send data to Elasticsearch with bulk method)
 Open terminal, go to "/elastic-kibana-docker/data" and run:
 
@@ -42,12 +46,12 @@ Open terminal, go to "/elastic-kibana-docker/data" and run:
 
 Note: Change the inputFileName.json for the name of your input file and chose the output file name. Change "_index" name for what you are working with and do it again for "_type"
 
--> Start Elasticsearch and Kibana containers
-open terminal and go to "/elastic-kibana-docker" and run:
+-> Start Elasticsearch and Kibana containers    
+open terminal, go to "/elastic-kibana-docker" and run:
   
     docker-compose up
 
--> Add data to the Elasticsearch cluster:
+-> Add data to the Elasticsearch cluster:    
 open terminal and run: 
 
     docker ps 
@@ -81,3 +85,8 @@ open web browser to server (elasticsearch):
 open web browser to client (kibana):    
     
     open http://localhost:5601
+
+
+## Manage Kibana visualization
+
+Check [kibana documentation](https://www.elastic.co/guide/en/kibana/6.3/index.html) to create new data graphs
